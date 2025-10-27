@@ -1,0 +1,134 @@
+.documents-section {
+  flex: 1;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-family: serif;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.update-docs-card {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+}
+
+.update-docs-card:hover {
+  border-color: #32CD32;
+  background: linear-gradient(135deg, #f0fff0 0%, #ffffff 100%);
+}
+
+.upload-icon {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.upload-text {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0;
+  font-weight: 500;
+}
+
+.placeholder-bars {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.bar {
+  flex: 1;
+  height: 8px;
+  background: linear-gradient(90deg, #e0e0e0, #f0f0f0);
+  border-radius: 4px;
+}
+
+.bar-1 {
+  max-width: 60%;
+}
+
+.bar-2 {
+  max-width: 80%;
+}
+
+.bar-3 {
+  max-width: 40%;
+}
+
+.documents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.document-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.document-item:hover {
+  background: #f0f0f0;
+  transform: translateX(5px);
+}
+
+.document-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.document-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.content-line {
+  height: 10px;
+  background: linear-gradient(90deg, #d0d0d0, #e0e0e0);
+  border-radius: 4px;
+}
+
+.line-1 {
+  width: 70%;
+}
+
+.line-2 {
+  width: 50%;
+}
+
+.document-chevron {
+  font-size: 0.8rem;
+  color: #999;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.document-item:hover .document-chevron {
+  transform: translateY(3px);
+}
