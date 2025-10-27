@@ -322,3 +322,232 @@ git fetch --prune
 - Si hay conflictos al hacer merge, resuelve los archivos con `<<<<<<<`, `=======`, `>>>>>>>`
 - Usa ramas descriptivas: `feature/login`, `bugfix/header-error`, `hotfix/security-patch`
 
+---
+
+## 📋 Guía Completa: Crear Rama y Subir Archivos Nuevos
+
+### ¿Qué pasa cuando creas una rama?
+
+Cuando creas una rama con `git checkout -b` o `git branch`, **solo se crea localmente** en tu computadora. Esta rama NO existe en GitHub todavía hasta que hagas `git push`.
+
+Al hacer `git push -u origin nombre-rama`, Git:
+1. **Crea la rama en GitHub** automáticamente
+2. **Sube tus commits** a esa rama
+3. **Conecta** tu rama local con la rama remota en GitHub
+
+---
+
+### 🚀 Pasos para Crear una Rama y Subir Archivos Nuevos
+
+#### **Paso 1: Verificar en qué rama estás**
+
+```bash
+# Ver rama actual
+git branch
+
+# Ver estado de tus archivos
+git status
+```
+
+**Ejemplo de salida:**
+```
+* main
+  home
+```
+El asterisco `*` indica que estás en la rama `main`.
+
+---
+
+#### **Paso 2: Crear una nueva rama**
+
+```bash
+# Crear rama y cambiar a ella
+git checkout -b mi-nueva-rama
+
+# O si prefieres el comando moderno
+git switch -c mi-nueva-rama
+```
+
+**¿Qué hace esto?**
+- Crea una copia de tu rama actual (ej: main)
+- Cambia a la nueva rama
+- Tu rama queda creada **solo localmente**, aún no está en GitHub
+
+**Verificar:**
+```bash
+git branch
+# Deberías ver: * mi-nueva-rama
+# El asterisco te indica que estás en esa rama
+```
+
+---
+
+#### **Paso 3: Crear o modificar archivos**
+
+Ahora puedes crear nuevos archivos o modificar los existentes:
+
+```bash
+# Crear un nuevo archivo (ejemplo)
+echo "Contenido del archivo" > nuevo-archivo.txt
+
+# O editar archivos existentes con tu editor
+# Por ejemplo: code App.jsx
+```
+
+**Ejemplo práctico:**
+```bash
+# Crear un nuevo componente
+mkdir src/components/Login
+# Editar archivos...
+```
+
+---
+
+#### **Paso 4: Agregar los archivos nuevos/modificados**
+
+```bash
+# Agregar archivos específicos
+git add ruta/al/archivo.jsx
+
+# Agregar todos los archivos nuevos y modificados
+git add .
+
+# Ver qué archivos vas a agregar
+git status
+```
+
+**¿Qué muestra `git status`?**
+```bash
+# Archivos sin seguimiento (nuevos) aparecen en rojo:
+# Untracked files: nuevo-archivo.txt
+
+# Archivos modificados aparecen en rojo:
+# Modified: src/App.jsx
+
+# Después de git add, aparecen en verde:
+# Changes to be committed: nuevo-archivo.txt
+```
+
+---
+
+#### **Paso 5: Hacer commit de los cambios**
+
+```bash
+git commit -m "Descripción clara de los cambios realizados"
+```
+
+**💡 Tip:** Escribe mensajes de commit descriptivos:
+- ✅ `"Agregar componente de autenticación"`
+- ✅ `"Crear formulario de contacto con validación"`
+- ✅ `"Corregir error en cálculo de precios"`
+- ❌ `"cambios"`
+- ❌ `"asdf"`
+
+---
+
+#### **Paso 6: Subir la rama a GitHub**
+
+```bash
+# Primera vez que subes la rama (se crea en GitHub)
+git push -u origin mi-nueva-rama
+```
+
+**¿Qué hace este comando?**
+- **Crea la rama** en GitHub (antes solo existía localmente)
+- **Sube todos tus commits** a GitHub
+- **Conecta** tu rama local con la remota (el `-u` hace el tracking)
+
+**Salida esperada:**
+```bash
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 423 bytes | 423.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'mi-nueva-rama' on GitHub by visiting:
+remote:      https://github.com/usuario/repo/pull/new/mi-nueva-rama
+remote: 
+ * [new branch]      mi-nueva-rama -> mi-nueva-rama
+ branch 'mi-nueva-rama' set up to track 'origin/mi-nueva-rama'.
+```
+
+**✅ ¡Listo!** Tu rama ya existe en GitHub.
+
+---
+
+#### **Paso 7: Verificar en GitHub**
+
+1. Ve a tu repositorio en GitHub
+2. Haz clic en el **selector de ramas** (donde dice "main")
+3. Deberías ver `mi-nueva-rama` en la lista
+4. Selecciónala para ver tu código
+
+---
+
+### 📝 Ejemplo Completo del Flujo
+
+```bash
+# 1. Verificar donde estás
+git branch
+# Salida: * main
+
+# 2. Crear rama para nueva funcionalidad
+git checkout -b feature/login-component
+
+# 3. Crear/modificar archivos
+code src/components/Login.jsx
+
+# 4. Agregar los archivos
+git add src/components/Login.jsx
+
+# 5. Hacer commit
+git commit -m "Agregar componente de login con validación"
+
+# 6. Subir a GitHub (PRIMERA VEZ)
+git push -u origin feature/login-component
+
+# ✅ La rama ahora existe en GitHub
+```
+
+---
+
+### 🔄 Subir cambios después (misma rama)
+
+Si ya trabajaste en la rama y quieres subir más cambios:
+
+```bash
+# 1. Asegúrate de estar en la rama correcta
+git branch
+# * feature/login-component  ← estás aquí
+
+# 2. Modifica archivos...
+
+# 3. Agregar cambios
+git add .
+
+# 4. Commit
+git commit -m "Agregar validación de email"
+
+# 5. Subir (ya no necesitas -u, solo push)
+git push
+```
+
+---
+
+### 🎯 Resumen de Comandos Esenciales
+
+| Acción | Comando |
+|--------|---------|
+| Crear y cambiar a rama | `git checkout -b nombre-rama` |
+| Ver ramas locales | `git branch` |
+| Ver ramas remotas | `git branch -r` |
+| Cambiar de rama | `git checkout nombre-rama` |
+| Agregar archivos | `git add .` |
+| Hacer commit | `git commit -m "mensaje"` |
+| Subir rama nueva | `git push -u origin nombre-rama` |
+| Subir cambios | `git push` |
+| Ver estado | `git status` |
+
